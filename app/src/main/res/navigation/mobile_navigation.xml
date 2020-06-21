@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.carrec2.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="com.example.carrec2.ui.home.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_fake"
+        android:name="com.example.carrec2.ui.fake.FakeFragment"
+        android:label="套牌车识别"
+        tools:layout="@layout/fragment_fake" />
+
+    <fragment
+        android:id="@+id/nav_parking"
+        android:name="com.example.carrec2.ui.parking.ParkingFragment"
+        android:label="停车场收费"
+        tools:layout="@layout/fragment_parking" />
+    <fragment
+        android:id="@+id/nav_car_count"
+        android:name="com.example.carrec2.ui.car_count.CarCountFragment"
+        android:label="公路车辆信息统计"
+        tools:layout="@layout/fragement_statistics" />
+    <fragment
+        android:id="@+id/nav_ticket"
+        android:name="com.example.carrec2.ui.ticket.TicketFragment"
+        android:label="道路停车罚单生成"
+        tools:layout="@layout/fragement_car_ticket" />
+    <fragment
+        android:id="@+id/nav_pure_rec"
+        android:name="com.example.carrec2.ui.pure_rec.PureRecFragment"
+        android:label="停车场收费"
+        tools:layout="@layout/fragment_pure_rec" />
+    <fragment
+        android:id="@+id/nav_car_info"
+        android:name="com.example.carrec2.ui.car_info.CarInfoFragment"
+        android:label="停车场收费详细信息"
+        tools:layout="@layout/fragment_car_info" />
+</navigation>

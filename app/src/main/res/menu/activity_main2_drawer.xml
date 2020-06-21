@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="欢迎界面" />
+        <item
+            android:id="@+id/nav_fake"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="套牌车识别" />
+        <item
+            android:id="@+id/nav_parking"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="停车场收费" />
+        <item
+            android:id="@+id/nav_car_count"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="车辆信息统计" />
+        <item
+            android:id="@+id/nav_ticket"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="道路罚单生成" />
+    </group>
+</menu>

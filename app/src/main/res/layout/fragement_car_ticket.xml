@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="900dp"
+        android:layout_height="600dp"
+        android:src="@drawable/bianqian"
+        android:layout_marginTop="-40dp"
+        android:scaleType="fitXY"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:foregroundGravity="center"
+            android:layout_marginLeft="50dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/ticket_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="温州市交通协管员道路停车记录告知单\nNo.6480670" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="车辆类型："/>
+
+                <Spinner
+                    android:id="@+id/ticket_sp_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="车辆牌号："/>
+                <EditText
+                    android:id="@+id/ticket_et_result_plate"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="京 Q20BY3"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginLeft="30dp"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="车辆颜色:"/>
+                <Spinner
+                    android:id="@+id/ticket_sp_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时间："/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_time_year"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="2020"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_time_month"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="6"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_time_day"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="15"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_time_hour"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="8"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_time_minute"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="01"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地点:"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_location"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="大华路70022"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:textSize="18dp"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="上述时间地点，该机动车未在道路停车泊位或停车场内停放，根据北京市实施中华人民共和国道路交通安全法第七十八条第四款的规定，已对以上事实作了图像记录，此通知单及图像记录将提供给北京市西城区真武庙四条2号审核"/>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="记录员:"/>
+                <EditText
+                    android:layout_marginLeft="5dp"
+                    android:inputType="date"
+                    android:id="@+id/ticket_et_recoder"
+                    android:background="@drawable/text_underline"
+                    android:textSize="18dp"
+                    android:text="小明"
+                    android:autoLink="all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <Button
+                android:gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="90dp"
+                android:id="@+id/ticket_bt_print"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打印" />
+        </LinearLayout>
+
+</RelativeLayout>
