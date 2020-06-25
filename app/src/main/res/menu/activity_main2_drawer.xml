@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="车辆信息统计" />
         <item
-            android:id="@+id/nav_ticket"
+            android:id="@+id/nav_ticket_pure_rec"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="道路罚单生成" />
     </group>

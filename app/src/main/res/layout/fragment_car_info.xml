@@ -52,30 +52,102 @@
                 android:id="@+id/crnn_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kache" />
+                android:text="" />
             <TextView
                 android:id="@+id/logo_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kache"  />
+                android:text=""  />
             <TextView
                 android:id="@+id/type_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kache" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/color1_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kache" />
+                android:text="" />
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:gravity="center"
-        android:id="@+id/ticket_bt_print"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打印" />
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/crnn_out_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据库车牌信息：" />
+            <TextView
+                android:id="@+id/logo_out_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据库车标信息："  />
+            <TextView
+                android:id="@+id/type_out_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据库车型信息：" />
+
+            <TextView
+                android:id="@+id/color1_out_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据库车颜色信息：" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="是否为套牌车："/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/crnn_database"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+            <TextView
+                android:id="@+id/logo_database"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""  />
+            <TextView
+                android:id="@+id/type_database"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/color1_database"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/final_is"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

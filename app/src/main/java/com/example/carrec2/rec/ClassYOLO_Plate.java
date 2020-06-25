@@ -30,7 +30,7 @@ import static org.opencv.imgproc.Imgproc.FONT_HERSHEY_SIMPLEX;
 import static org.opencv.imgproc.Imgproc.putText;
 import static org.opencv.imgproc.Imgproc.rectangle;
 
-public class ClassYOLO {
+public class ClassYOLO_Plate {
     public static Net net=null;
     private static int inpWidth = 416;
     private static int inpHeight = 416;
@@ -139,8 +139,8 @@ public class ClassYOLO {
             }
             if(box_plate_max_confidences>0){
                 MyUtils.Advanced_Plate_recognition(box_plate);
-                int y = Math.max(box_plate.y - box_plate.height * 4, 0);
-                drawPred(-1, box_plate_max_confidences, box_plate.x, y, box_plate.x + box_plate.width, box_plate.y, frame);
+//                int y = Math.max(box_plate.y - box_plate.height * 4, 0);
+//                drawPred(-1, box_plate_max_confidences, box_plate.x, y, box_plate.x + box_plate.width, box_plate.y, frame);
                 drawPred(0, box_plate_max_confidences, box_plate.x, box_plate.y, box_plate.x + box_plate.width,
                         box_plate.y + box_plate.height, frame);
             }

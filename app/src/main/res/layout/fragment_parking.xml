@@ -15,22 +15,22 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:text="单张识别" />
+            android:text="入场识别" />
 
         <Button
             android:id="@+id/stopping_bt_auto"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:text="自动识别" />
+            android:text="出场识别" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/stopping_bt_recognize"
+        android:id="@+id/stopping_bt_history"
         android:layout_gravity="center"
         android:layout_marginTop="160dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="切换权重（当前为yolo-tiny）" />
+        android:text="历史停车" />
 </LinearLayout>

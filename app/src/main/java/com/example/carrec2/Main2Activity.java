@@ -1,14 +1,21 @@
 package com.example.carrec2;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.carrec2.database.db.CarDatabase;
 import com.example.carrec2.rec.ClassCOLOR;
 import com.example.carrec2.rec.ClassCRNN;
 import com.example.carrec2.rec.ClassLOGO;
 import com.example.carrec2.rec.ClassTYPE;
 import com.example.carrec2.rec.ClassYOLO;
+import com.example.carrec2.rec.ClassYOLO_Plate;
 import com.example.carrec2.rec.MyUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -20,6 +27,7 @@ import org.pytorch.Module;
 
 import java.io.IOException;
 
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,6 +47,16 @@ public class Main2Activity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads().detectDiskWrites().detectNetwork()
+                .penaltyLog().build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+                .penaltyLog().penaltyDeath().build());
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -63,6 +81,10 @@ public class Main2Activity extends AppCompatActivity  {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        MyUtils.carDatabase = new CarDatabase(this);
+        MyUtils.carDatabase.open();
     }
 
     int now_load=1;
@@ -97,6 +119,7 @@ public class Main2Activity extends AppCompatActivity  {
             s_tiny = MyUtils.assetFilePath( "yolo-tiny_plate_2class_0612.weights");
             ss_tiny = MyUtils.assetFilePath( "yolov3_2-tiny.cfg");
             ClassYOLO.net = Dnn.readNetFromDarknet(ss_tiny, s_tiny);
+            ClassYOLO_Plate.net = Dnn.readNetFromDarknet(ss_tiny, s_tiny);
             now_load=1;
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,5 +144,39 @@ public class Main2Activity extends AppCompatActivity  {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            // 用户未选择任何文件，直接返回
+            return;
+        }
+        Uri uri = data.getData(); // 获取用户选择文件的URI
+        // 通过ContentProvider查询文件路径
+        ContentResolver resolver = this.getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null);
+        if (cursor == null) {
+            // 未查询到，说明为普通文件，可直接通过URI获取文件路径
+            String path = uri.getPath();
+            return;
+        }
+        if (cursor.moveToFirst()) {
+            // 多媒体文件，从数据库中获取文件的真实路径
+            String path = cursor.getString(cursor.getColumnIndex("_data"));
+        }
+        cursor.close();
+    }
+    public void pickFile(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        this.startActivityForResult(intent,  1);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyUtils.carDatabase.close();
     }
 }

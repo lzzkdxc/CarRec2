@@ -3,12 +3,19 @@ package com.example.carrec2.rec;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.carrec2.R;
+import com.example.carrec2.database.db.CarDatabase;
+
 import org.opencv.core.Core;
+import org.opencv.core.CvException;
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,7 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MyUtils {
     static String  alphabet = "-京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新警学军空海北沈兰济南广成ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -35,6 +46,8 @@ public class MyUtils {
     public static Bitmap image_out;
     public static Bitmap image_rec;
     public static String crnn_out,type_out,logo_out,color_out;
+
+    public static CarDatabase carDatabase;
     static String  quChong(String input)
     {
         String out="";
@@ -256,5 +269,47 @@ public class MyUtils {
 
         return heightBit * 16 + lowBit;
     }
+
+
+    public static Bitmap bitmap_allcar;
+    public static Mat dst;
+    public static void Advanced_Plate_recognition (Rect box){
+        int y = box.y - box.height * 4 < 0 ? 0 : box.y - box.height * 4;
+        try {
+            box.width=dst.width()-box.x<box.width?dst.width()-box.x:box.width;
+            box.height=dst.height()-box.y<box.height?dst.height()-box.y:box.height;
+
+            int w = dst.width(), h = dst.height();
+            bitmap_allcar = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            ClassCRNN.bitmap_plate = Bitmap.createBitmap(bitmap_allcar, box.x, box.y, box.width, box.height);
+            ClassLOGO.bitmap_plate = Bitmap.createBitmap(bitmap_allcar, box.x, y, box.width, box.y - y);
+            ClassCRNN.go();
+            ClassLOGO.go();
+
+        } catch (CvException e) {
+            Log.d("Exception", e.getMessage());
+        }
+    }
+
+    public static void Advanced_Car_recognition (Rect box){
+        try {
+            box.width=dst.width()-box.x<box.width?dst.width()-box.x:box.width;
+            box.height=dst.height()-box.y<box.height?dst.height()-box.y:box.height;
+            box.y=box.y>=0?box.y:0;
+            box.x=box.x>=0?box.x:0;
+            box.width=box.width>0?box.width:1;
+            box.height=box.height>0?box.height:1;
+            int w = dst.width(), h = dst.height();
+            bitmap_allcar = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            ClassTYPE.bitmap_plate = Bitmap.createBitmap(bitmap_allcar, box.x, box.y, box.width, box.height);
+            ClassCOLOR.bitmap_plate = Bitmap.createBitmap(bitmap_allcar, box.x, box.y, box.width, box.height);
+            ClassCOLOR.go();
+            ClassTYPE.go();
+
+        } catch (CvException e) {
+            Log.d("Exception", e.getMessage());
+        }
+    }
+
 
 }

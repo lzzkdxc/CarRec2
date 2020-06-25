@@ -21,8 +21,7 @@ public class CarInfoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(CarInfoViewModel.class);
+        slideshowViewModel = ViewModelProviders.of(this).get(CarInfoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_car_info, container, false);
         ImageView imageView=root.findViewById(R.id.yolov3cam_out);
         TextView text_type=root.findViewById(R.id.type_out);

@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="车辆类型："/>
 
-                <Spinner
+                <TextView
                     android:id="@+id/ticket_sp_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="车辆颜色:"/>
-                <Spinner
+                <TextView
                     android:id="@+id/ticket_sp_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
