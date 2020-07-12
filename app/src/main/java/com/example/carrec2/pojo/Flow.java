@@ -1,4 +1,4 @@
-package com.example.carrec2.database.pojo;
+package com.example.carrec2.pojo;
 
 import java.util.Date;
 

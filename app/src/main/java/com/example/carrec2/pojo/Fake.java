@@ -1,4 +1,4 @@
-package com.example.carrec2.database.pojo;
+package com.example.carrec2.pojo;
 
 
 //套牌车查询表

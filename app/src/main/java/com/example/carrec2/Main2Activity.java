@@ -6,19 +6,18 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
 
+import com.example.carrec2.database.data.CreateTableSQL;
+import com.example.carrec2.database.data.DBData;
 import com.example.carrec2.database.db.CarDatabase;
 import com.example.carrec2.rec.ClassCOLOR;
 import com.example.carrec2.rec.ClassCRNN;
 import com.example.carrec2.rec.ClassLOGO;
 import com.example.carrec2.rec.ClassTYPE;
 import com.example.carrec2.rec.ClassYOLO;
-import com.example.carrec2.rec.ClassYOLO_Plate;
 import com.example.carrec2.rec.MyUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import org.opencv.android.OpenCVLoader;
@@ -28,13 +27,13 @@ import org.pytorch.Module;
 import java.io.IOException;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class Main2Activity extends AppCompatActivity  {
 
@@ -85,6 +84,13 @@ public class Main2Activity extends AppCompatActivity  {
 
         MyUtils.carDatabase = new CarDatabase(this);
         MyUtils.carDatabase.open();
+
+        MyUtils.carDatabase.db.execSQL("drop table if exists park");
+        MyUtils.carDatabase.db.execSQL(CreateTableSQL.table_park_sql);
+        System.out.println(CreateTableSQL.table_park_sql);
+        //为park插入数据
+        for (String sql : DBData.park_data_sql)
+            MyUtils.carDatabase.db.execSQL(sql);
     }
 
     int now_load=1;
@@ -114,12 +120,14 @@ public class Main2Activity extends AppCompatActivity  {
             e.printStackTrace();
         }
         try {
-            s = MyUtils.assetFilePath( "YOLO_plate_2class_CPU.weights");
-            ss = MyUtils.assetFilePath( "yolov3_2.cfg");
+//            s = MyUtils.assetFilePath( "YOLO_plate_2class_CPU.weights");
+//            ss = MyUtils.assetFilePath( "yolov3_2.cfg");
             s_tiny = MyUtils.assetFilePath( "yolo-tiny_plate_2class_0612.weights");
             ss_tiny = MyUtils.assetFilePath( "yolov3_2-tiny.cfg");
+//            s_tiny_plate = MyUtils.assetFilePath( "yolo-tiny_plate_1class_0625.weights");
+//            ss_tiny_plate = MyUtils.assetFilePath( "yolov3-tiny_1.cfg");
             ClassYOLO.net = Dnn.readNetFromDarknet(ss_tiny, s_tiny);
-            ClassYOLO_Plate.net = Dnn.readNetFromDarknet(ss_tiny, s_tiny);
+//            ClassYOLO_Plate.net = Dnn.readNetFromDarknet(ss_tiny_plate, s_tiny_plate);
             now_load=1;
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,7 +139,7 @@ public class Main2Activity extends AppCompatActivity  {
 //            e.printStackTrace();
 //        }
     }
-    public static String s_tiny,ss_tiny,s,ss;
+    public static String s_tiny,ss_tiny,s,ss,ss_tiny_plate,s_tiny_plate;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

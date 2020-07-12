@@ -8,7 +8,7 @@
     <tech.huqi.smartopencv.core.preview.CameraPreview
         android:id="@+id/yolov3cam"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout
@@ -61,7 +61,7 @@
         android:id="@+id/button_pure_rec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="600dp"
         android:layout_marginLeft="160dp"
         android:text="识别" />
 
@@ -69,7 +69,7 @@
         android:id="@+id/button_load_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="600dp"
         android:layout_marginLeft="20dp"
         android:text="从相册加载" />
 </RelativeLayout>

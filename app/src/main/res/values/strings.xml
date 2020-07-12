@@ -30,4 +30,38 @@
         <item>黄色</item>
         <item>蓝色</item>
     </string-array>
+
+    <string-array name="main_tab_images">
+        <item>@drawable/q</item>
+        <item>@drawable/w</item>
+        <item>@drawable/e</item>
+        <item>@drawable/r</item>
+        <item>@drawable/t</item>
+        <item>@drawable/y</item>
+        <item>@drawable/o</item>
+        <item>@drawable/a</item>
+        <item>@drawable/p</item>
+        <item>@drawable/u</item>
+        <item>@drawable/i</item>
+        <item>@drawable/q</item>
+        <item>@drawable/w</item>
+        <item>@drawable/e</item>
+        <item>@drawable/r</item>
+        <item>@drawable/t</item>
+        <item>@drawable/y</item>
+        <item>@drawable/u</item>
+        <item>@drawable/i</item>
+        <item>@drawable/o</item>
+        <item>@drawable/p</item>
+        <item>@drawable/q</item>
+        <item>@drawable/w</item>
+        <item>@drawable/e</item>
+        <item>@drawable/r</item>
+        <item>@drawable/t</item>
+        <item>@drawable/y</item>
+        <item>@drawable/u</item>
+        <item>@drawable/i</item>
+        <item>@drawable/o</item>
+        <item>@drawable/p</item>
+    </string-array>
 </resources>

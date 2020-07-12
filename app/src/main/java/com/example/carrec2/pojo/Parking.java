@@ -1,17 +1,15 @@
-package com.example.carrec2.http.pojo;
-
-import java.util.Date;
+package com.example.carrec2.pojo;
 
 //停车场记录表
 public class Parking {
     private int id;
-    private Date recordTimeIn;
-    private Date recordTimeOut;
-    private double cost;
+    private String recordTimeIn;
+    private String recordTimeOut;
+    private int cost;
     private String carPlate;
 
 
-    public Parking(int id, Date recordTimeIn, Date recordTimeOut, double cost, String car_plate) {
+    public Parking(int id, String recordTimeIn, String recordTimeOut, int cost, String car_plate) {
         this.id = id;
         this.recordTimeIn = recordTimeIn;
         this.recordTimeOut = recordTimeOut;
@@ -19,6 +17,9 @@ public class Parking {
         this.carPlate = car_plate;
     }
 
+    public Parking(String car_plate) {
+        this.carPlate = car_plate;
+    }
     public Parking() {
     }
 
@@ -30,27 +31,27 @@ public class Parking {
         this.id = id;
     }
 
-    public Date getRecordTimeIn() {
+    public String getRecordTimeIn() {
         return recordTimeIn;
     }
 
-    public void setRecordTimeIn(Date recordTimeIn) {
+    public void setRecordTimeIn(String recordTimeIn) {
         this.recordTimeIn = recordTimeIn;
     }
 
-    public Date getRecordTimeOut() {
+    public String getRecordTimeOut() {
         return recordTimeOut;
     }
 
-    public void setRecordTimeOut(Date recordTimeOut) {
+    public void setRecordTimeOut(String recordTimeOut) {
         this.recordTimeOut = recordTimeOut;
     }
 
-    public double getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 

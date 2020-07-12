@@ -1,10 +1,5 @@
 package com.example.carrec2.rec;
 
-import android.graphics.Bitmap;
-
-import com.example.carrec2.ui.main_fake.fake.FakeFragment;
-
-import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
@@ -45,25 +40,24 @@ public class ClassYOLO_Plate {
     }
     public static Mat Go(Mat re){
 
-        Mat blob = Dnn.blobFromImage(re, 1 / 255.0, new Size(inpWidth, inpHeight), new Scalar(0, 0, 0), true, false);
-
-        Mat draw_re=re.clone();
-//        Mat re=dst.clone();
-        net.setInput(blob);
-        List<Mat> outs = new ArrayList<>();
-        beforeForward = System.currentTimeMillis();
-        net.forward(outs, getOutputsNames(net));
-        afterForward = System.currentTimeMillis();
-        Outtime();
-        start = System.currentTimeMillis();
-//        System.out.println("recNu_MainAAAAAAA="+recNu);
-        postprocess(draw_re, outs);
-        afterpostpro = System.currentTimeMillis();
-
-        int w = draw_re.width(), h = draw_re.height();
-        MyUtils.image_out = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(draw_re, MyUtils.image_out);
-        return draw_re;
+//        Mat blob = Dnn.blobFromImage(re, 1 / 255.0, new Size(inpWidth, inpHeight), new Scalar(0, 0, 0), true, false);
+//
+//        Mat draw_re=re.clone();
+////        Mat re=dst.clone();
+//        net.setInput(blob);
+//        Utils.matToBitmap(re, MyUtils.bitmap_allcar);
+//        List<Mat> outs = new ArrayList<>();
+//        beforeForward = System.currentTimeMillis();
+//        net.forward(outs, getOutputsNames(net));
+//        afterForward = System.currentTimeMillis();
+//        Outtime();
+//        start = System.currentTimeMillis();
+////        System.out.println("recNu_MainAAAAAAA="+recNu);
+//        postprocess(draw_re, outs);
+//        afterpostpro = System.currentTimeMillis();
+//
+//        Utils.matToBitmap(MyUtils.image_out_Mat, MyUtils.image_out);
+        return re;
 
     }
     private static void postprocess(Mat frame, List<Mat> outs) {
@@ -126,23 +120,23 @@ public class ClassYOLO_Plate {
                         box_plate=box;
                     }
                 }else if(1 == classIds.get(idx)){
-                    if(box_car_max_confidences<confidences.get(idx)){
-                        box_car_max_confidences=confidences.get(idx);
-                        box_car=box;
-                    }
+//                    if(box_car_max_confidences<confidences.get(idx)){
+//                        box_car_max_confidences=confidences.get(idx);
+//                        box_car=box;
+//                    }
                 }
             }
             if(box_car_max_confidences>0){
-                MyUtils.Advanced_Car_recognition(box_car);
-                drawPred(0, box_car_max_confidences, box_car.x, box_car.y, box_car.x + box_car.width,
-                        box_car.y + box_car.height, frame);
+//                MyUtils.Advanced_Car_recognition(box_car);
+//                drawPred(0, box_car_max_confidences, box_car.x, box_car.y, box_car.x + box_car.width,
+//                        box_car.y + box_car.height, frame);
             }
             if(box_plate_max_confidences>0){
                 MyUtils.Advanced_Plate_recognition(box_plate);
 //                int y = Math.max(box_plate.y - box_plate.height * 4, 0);
 //                drawPred(-1, box_plate_max_confidences, box_plate.x, y, box_plate.x + box_plate.width, box_plate.y, frame);
                 drawPred(0, box_plate_max_confidences, box_plate.x, box_plate.y, box_plate.x + box_plate.width,
-                        box_plate.y + box_plate.height, frame);
+                        box_plate.y + box_plate.height, MyUtils.image_out_Mat);
             }
         }
 

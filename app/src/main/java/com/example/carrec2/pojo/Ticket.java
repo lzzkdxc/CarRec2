@@ -1,4 +1,4 @@
-package com.example.carrec2.http.pojo;
+package com.example.carrec2.pojo;
 
 
 import java.util.Date;
@@ -9,14 +9,14 @@ public class Ticket {
     private Date recordTime;
     private String recordLocation;
     private String recordMan;
-    private double cost;
+    private int cost;
     private String carType;
     private String carColor;
     private String carPlate;
     private String carLogo;
     private String remark;
 
-    public Ticket(int id, Date recordTime, String recordLocation, String recordMan, double cost, String carType, String carColor, String carPlate, String carLogo, String remark) {
+    public Ticket(int id, Date recordTime, String recordLocation, String recordMan, int cost, String carType, String carColor, String carPlate, String carLogo, String remark) {
         this.id = id;
         this.recordTime = recordTime;
         this.recordLocation = recordLocation;
@@ -64,11 +64,11 @@ public class Ticket {
         this.recordMan = recordMan;
     }
 
-    public double getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 

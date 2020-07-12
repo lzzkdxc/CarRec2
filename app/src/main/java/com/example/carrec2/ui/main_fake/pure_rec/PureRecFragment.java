@@ -63,8 +63,8 @@ public class PureRecFragment extends Fragment implements View.OnTouchListener, C
         commandIsDetect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyUtils.dst=dst;
                 ClassYOLO.Go(dst);
+//                ClassYOLO_Plate.Go(dst);
                 NavController navController = Navigation.findNavController(requireView());
                 navController.navigate(R.id.nav_fake_result);
             }
@@ -92,9 +92,10 @@ public class PureRecFragment extends Fragment implements View.OnTouchListener, C
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(MyUtils.context.getContentResolver(), uri);
                     Utils.bitmapToMat(bitmap,dsst);
-                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
-                    MyUtils.dst=dst;
+//                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
+                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2RGB);
                     ClassYOLO.Go(dst);
+//                    ClassYOLO_Plate.Go(dst);
                     NavController navController = Navigation.findNavController(requireView());
                     navController.navigate(R.id.nav_fake_result);
                 } catch (IOException e) {
@@ -151,12 +152,9 @@ public class PureRecFragment extends Fragment implements View.OnTouchListener, C
     //    Bitmap bitmap_small;
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-//        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2RGB); //手机
-        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
+        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2RGB); //手机
+//        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
 
-        int w = dst.width(), h = dst.height();
-        MyUtils.image_rec = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(dst, MyUtils.image_rec);
 
         return dst;
     }

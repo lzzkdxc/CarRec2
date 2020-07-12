@@ -27,8 +27,8 @@ public class ParkingFragment extends Fragment {
         slideshowViewModel =
                 ViewModelProviders.of(this).get(ParkingViewModel.class);
         View root = inflater.inflate(R.layout.fragment_parking, container, false);
-        button_out =root.findViewById(R.id.stopping_bt_hand);
-        button_in =root.findViewById(R.id.stopping_bt_auto);
+        button_out =root.findViewById(R.id.stopping_bt_out);
+        button_in =root.findViewById(R.id.stopping_bt_in);
         button_list=root.findViewById(R.id.stopping_bt_history);
         button_in.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,14 +11,15 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.carrec2.R;
+import com.example.carrec2.pojo.Parking;
 import com.example.carrec2.rec.ClassCOLOR;
 import com.example.carrec2.rec.ClassCRNN;
 import com.example.carrec2.rec.ClassLOGO;
 import com.example.carrec2.rec.ClassTYPE;
 import com.example.carrec2.rec.ClassYOLO;
-import com.example.carrec2.rec.ClassYOLO_Plate;
 import com.example.carrec2.rec.MyUtils;
 
 import org.opencv.android.CameraBridgeViewBase;
@@ -31,8 +32,6 @@ import java.io.IOException;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import tech.huqi.smartopencv.SmartOpenCV;
 import tech.huqi.smartopencv.core.preview.CameraConfiguration;
 
@@ -64,10 +63,8 @@ public class PureRecParkFragment extends Fragment implements View.OnTouchListene
         commandIsDetect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyUtils.dst=dst;
-                ClassYOLO_Plate.Go(dst);
-                NavController navController = Navigation.findNavController(requireView());
-                navController.navigate(R.id.nav_ticket);
+//                ClassYOLO.Go(dst);
+//                ClassYOLO_Plate.Go(dst);
             }
         });
 
@@ -93,11 +90,14 @@ public class PureRecParkFragment extends Fragment implements View.OnTouchListene
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(MyUtils.context.getContentResolver(), uri);
                     Utils.bitmapToMat(bitmap,dsst);
-                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
-                    MyUtils.dst=dst;
-                    ClassYOLO_Plate.Go(dst);
-                    NavController navController = Navigation.findNavController(requireView());
-                    navController.navigate(R.id.nav_ticket);
+//                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2BGR);  //模拟器  黑MQ6167
+//                    Imgproc.cvtColor(dsst, dst, Imgproc.COLOR_RGBA2RGB);
+//                    ClassYOLO.Go(dst);
+//                    ClassYOLO_Plate.Go(dst);
+                    Parking parking=new Parking(MyUtils.crnn_out);
+                    MyUtils.carDatabase.insertParkData(parking);
+                    Toast toast= Toast.makeText(MyUtils.context,MyUtils.crnn_out+"  入场", Toast.LENGTH_SHORT);
+                    MyUtils.showMyToast(toast,3000);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -152,12 +152,9 @@ public class PureRecParkFragment extends Fragment implements View.OnTouchListene
     //    Bitmap bitmap_small;
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-//        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2RGB); //手机
-        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
+        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2RGB); //手机
+//        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
 
-        int w = dst.width(), h = dst.height();
-        MyUtils.image_rec = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(dst, MyUtils.image_rec);
 
         return dst;
     }

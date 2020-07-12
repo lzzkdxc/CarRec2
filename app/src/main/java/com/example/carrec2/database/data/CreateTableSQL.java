@@ -10,6 +10,7 @@ import static com.example.carrec2.database.db.CarDatabase.FLOW_KEY_LOCATION;
 import static com.example.carrec2.database.db.CarDatabase.FLOW_KEY_PLATE;
 import static com.example.carrec2.database.db.CarDatabase.FLOW_KEY_RECORDTIME;
 
+
 public class CreateTableSQL {
     public static String table_flow_sql = String.format("create table if not exists flow(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "%s datetime, %s text, %s text)",
@@ -19,4 +20,24 @@ public class CreateTableSQL {
     public static String table_fake_sql = String.format("create table if not exists fake(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "%s text, %s text, %s text, %s text)",
             FAKE_KEY_ID, FAKE_KEY_TYPE, FAKE_KEY_COLOR, FAKE_KEY_PLATE, FAKE_KEY_LOGO);
+
+    public static String table_ticket_sql = "create table if not exists ticket(" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "recordTime text, " +
+                    "recordLocation text, " +
+                    "recordMan text, " +
+                    "cost INTEGER" +
+                    "carType text" +
+                    "carColor text" +
+                    "carPlate text" +
+                    "carLogo text" +
+                    "remark text)";
+
+    public static String table_park_sql = "create table if not exists park(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "recordTimeIn text, " +
+            "recordTimeOut text, " +
+            "carPlate text)";
+
+
 }

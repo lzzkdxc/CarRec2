@@ -11,14 +11,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/stopping_bt_hand"
+            android:id="@+id/stopping_bt_in"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_weight="1"
             android:text="入场识别" />
 
         <Button
-            android:id="@+id/stopping_bt_auto"
+            android:id="@+id/stopping_bt_out"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_weight="1"

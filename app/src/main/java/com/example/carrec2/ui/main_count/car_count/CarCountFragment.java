@@ -1,6 +1,5 @@
 package com.example.carrec2.ui.main_count.car_count;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,10 +15,8 @@ import com.example.carrec2.rec.ClassLOGO;
 import com.example.carrec2.rec.ClassTYPE;
 import com.example.carrec2.rec.ClassYOLO;
 import com.example.carrec2.rec.ClassYOLO_Plate;
-import com.example.carrec2.rec.MyUtils;
 
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
@@ -156,11 +153,6 @@ public class CarCountFragment extends Fragment implements View.OnTouchListener, 
 //        Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2RGB); //手机
         Imgproc.cvtColor(inputFrame.rgba(), dst, Imgproc.COLOR_RGBA2BGR);  //模拟器
 
-        int w = dst.width(), h = dst.height();
-        MyUtils.image_rec = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(dst, MyUtils.image_rec);
-
-        MyUtils.dst=dst;
         return ClassYOLO_Plate.Go(dst);
 //        if(is_detect_live==1){
 //        }else{
